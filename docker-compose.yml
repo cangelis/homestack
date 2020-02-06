@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ../:/var/www:cached
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/sites:/etc/nginx/sites-available
+    ports:
+      - "80:80"
+      - "443:443"
+
+  php56:
+    build:
+      context: ./php56
+    volumes:
+      - ../:/var/www:cached
+      - ./php56/home:/root
+      - ./php56/supervisord:/etc/supervisord.d
+
+  php73:
+    build:
+      context: ./php73
+    volumes:
+      - ../:/var/www:cached
+      - ./php73/home:/root
+      - ./php73/supervisord:/etc/supervisord.d
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+
+  mysql80:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql80/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  mysql57:
+    image: mysql:5.7
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./mysql57/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  redis:
+    image: redis:5.0-alpine
