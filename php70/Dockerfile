@@ -1,11 +1,11 @@
-FROM php:5.6-fpm-alpine
+FROM php:7.0-fpm-alpine
 
 RUN apk update \
     && apk upgrade \
     && apk add --no-cache openssl \
     && apk add --no-cache bash \
-    && apk add --update nodejs npm \
-    && apk add libmcrypt-dev zlib-dev libpng-dev \
+    && apk add --update nodejs nodejs-npm \
+    && apk add libmcrypt-dev libzip-dev libpng-dev \
     && apk add nano git \
     && apk add --update supervisor
 
@@ -16,11 +16,11 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 	&& rm composer-setup.php
 
 RUN docker-php-ext-install mcrypt \
-	&& docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install pdo_mysql \
 	&& docker-php-ext-install zip \
 	&& docker-php-ext-install gd \
 	&& docker-php-ext-install bcmath \
 	&& docker-php-ext-install opcache \
-	&& docker-php-ext-install pcntl
+	&& docker-php-ext-install mysqli
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["/usr/bin/supervisord"]

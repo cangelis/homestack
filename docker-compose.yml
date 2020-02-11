@@ -1,5 +1,8 @@
 version: '3'
 
+networks:
+  pp-api:
+
 services:
 
   nginx:
@@ -9,6 +12,10 @@ services:
       - ../:/var/www:cached
       - ./nginx/logs:/var/log/nginx
       - ./nginx/sites:/etc/nginx/sites-available
+    networks:
+      pp-api:
+        aliases:
+          - local-api.publisherplus.ie
     ports:
       - "80:80"
       - "443:443"
@@ -20,6 +27,9 @@ services:
       - ../:/var/www:cached
       - ./php56/home:/root
       - ./php56/supervisord:/etc/supervisord.d
+    networks:
+      - pp-api
+      - default
 
   php73:
     build:
@@ -28,6 +38,31 @@ services:
       - ../:/var/www:cached
       - ./php73/home:/root
       - ./php73/supervisord:/etc/supervisord.d
+    networks:
+      - pp-api
+      - default
+
+  php70:
+    build:
+      context: ./php70
+    volumes:
+      - ../:/var/www:cached
+      - ./php70/home:/root
+      - ./php70/supervisord:/etc/supervisord.d
+    networks:
+      - pp-api
+      - default
+
+  php72:
+    build:
+      context: ./php72
+    volumes:
+      - ../:/var/www:cached
+      - ./php72/home:/root
+      - ./php72/supervisord:/etc/supervisord.d
+    networks:
+      - pp-api
+      - default
 
   mailhog:
     image: mailhog/mailhog
