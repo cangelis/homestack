@@ -46,6 +46,10 @@ docker-compose exec php72 bash
 docker-compose exec php73 bash
 ```
 
+### nginx sites
+
+Create the corresponding `.conf` file for each site into the `nginx/sites` folder.
+
 ### Custom runtime config for PHP containers
 
 If you'd like to add to PATH or make custom aliases in the container create a `init.sh` file in `dev_env/php<VERSION>/home` folder.
