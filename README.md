@@ -46,6 +46,13 @@ docker-compose exec php72 bash
 docker-compose exec php73 bash
 ```
 
+### SSH
+
+SSH is only installed for php7.3 for now. Use the private key `php73/home/.ssh/id_rsa` to authenticate.
+
+- User: `root`
+- Port: `7322`
+
 ### nginx sites
 
 Create the corresponding `.conf` file for each site into the `nginx/sites` folder.

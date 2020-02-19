@@ -31,17 +31,6 @@ services:
       - pp-api
       - default
 
-  php73:
-    build:
-      context: ./php73
-    volumes:
-      - ../:/var/www:cached
-      - ./php73/home:/root
-      - ./php73/supervisord:/etc/supervisord.d
-    networks:
-      - pp-api
-      - default
-
   php70:
     build:
       context: ./php70
@@ -63,6 +52,19 @@ services:
     networks:
       - pp-api
       - default
+
+  php73:
+    build:
+      context: ./php73
+    volumes:
+      - ../:/var/www:cached
+      - ./php73/home:/root
+      - ./php73/supervisord:/etc/supervisord.d
+    networks:
+      - pp-api
+      - default
+    ports:
+      - "7322:22"
 
   mailhog:
     image: mailhog/mailhog

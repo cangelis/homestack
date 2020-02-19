@@ -6,7 +6,7 @@ RUN apk update \
     && apk add --no-cache bash \
     && apk add --update nodejs npm \
     && apk add libmcrypt-dev libzip-dev libpng-dev \
-    && apk add nano git \
+    && apk add nano git openssh \
     && apk add --update supervisor
 
 COPY supervisord.conf /etc/supervisord.conf
@@ -14,6 +14,9 @@ COPY supervisord.conf /etc/supervisord.conf
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 	&& php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
 	&& rm composer-setup.php
+
+RUN /usr/bin/ssh-keygen -A
+RUN /usr/bin/passwd -u root
 
 RUN docker-php-ext-install pdo_mysql \
 	&& docker-php-ext-install zip \
