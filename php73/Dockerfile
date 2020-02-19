@@ -17,6 +17,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 RUN /usr/bin/ssh-keygen -A
 RUN /usr/bin/passwd -u root
+RUN sed -i 's#root:x:0:0:root:/root:/bin/ash#root:x:0:0:root:/root:/bin/bash#g' /etc/passwd
 
 RUN docker-php-ext-install pdo_mysql \
 	&& docker-php-ext-install zip \
