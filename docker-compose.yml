@@ -25,7 +25,7 @@ services:
       context: ./php56
     volumes:
       - ../:/var/www:cached
-      - ./php56/home:/root
+      - ./php56/home:/root:cached
       - ./php56/supervisord:/etc/supervisord.d
     networks:
       - pp-api
@@ -36,7 +36,7 @@ services:
       context: ./php70
     volumes:
       - ../:/var/www:cached
-      - ./php70/home:/root
+      - ./php70/home:/root:cached
       - ./php70/supervisord:/etc/supervisord.d
     networks:
       - pp-api
@@ -47,7 +47,7 @@ services:
       context: ./php72
     volumes:
       - ../:/var/www:cached
-      - ./php72/home:/root
+      - ./php72/home:/root:cached
       - ./php72/supervisord:/etc/supervisord.d
     networks:
       - pp-api
@@ -58,7 +58,7 @@ services:
       context: ./php73
     volumes:
       - ../:/var/www:cached
-      - ./php73/home:/root
+      - ./php73/home:/root:cached
       - ./php73/supervisord:/etc/supervisord.d
     networks:
       - pp-api
@@ -72,7 +72,8 @@ services:
       - "8025:8025"
 
   mysql80:
-    image: mysql:8.0
+    build:
+      context: ./mysql80
     ports:
       - "3307:3306"
     volumes:
