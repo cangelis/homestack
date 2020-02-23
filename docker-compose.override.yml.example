@@ -28,7 +28,7 @@ services:
 
   php74:
     ports:
-      - "7322:22"
+      - "7422:22"
 
   mailhog:
     ports:
