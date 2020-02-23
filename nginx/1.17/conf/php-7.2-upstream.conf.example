@@ -1,0 +1,3 @@
+upstream php72 {
+  server php72:9000;
+}

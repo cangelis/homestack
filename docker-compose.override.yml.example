@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  nginx117:
+    ports:
+      - "80:80"
+      - "443:443"
+
+  php56:
+    ports:
+      - "5622:22"
+
+  php70:
+    ports:
+      - "7022:22"
+
+  php71:
+    ports:
+      - "7122:22"
+
+  php72:
+    ports:
+      - "7222:22"
+
+  php73:
+    ports:
+      - "7322:22"
+
+  php74:
+    ports:
+      - "7322:22"
+
+  mailhog:
+    ports:
+      - "8025:8025"
+
+  mysql57:
+    ports:
+      - "3357:3306"
+
+  mysql80:
+    ports:
+      - "3380:3306"

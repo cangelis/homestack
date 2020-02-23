@@ -1,0 +1,3 @@
+upstream php56 {
+  server php56:9000;
+}

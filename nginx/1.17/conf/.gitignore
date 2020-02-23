@@ -1,0 +1,8 @@
+*
+!php-5.6-upstream.conf.example
+!php-7.0-upstream.conf.example
+!php-7.1-upstream.conf.example
+!php-7.2-upstream.conf.example
+!php-7.3-upstream.conf.example
+!php-7.4-upstream.conf.example
+!.gitignore

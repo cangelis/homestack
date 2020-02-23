@@ -1,0 +1,3 @@
+upstream php73 {
+  server php73:9000;
+}

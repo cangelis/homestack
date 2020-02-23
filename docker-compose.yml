@@ -1,94 +1,115 @@
 version: '3'
 
-networks:
-  pp-api:
-
 services:
-
-  nginx:
+  nginx117:
     build:
-      context: ./nginx
+      context: .
+      dockerfile: nginx/1.17/Dockerfile
     volumes:
-      - ../:/var/www:cached
-      - ./nginx/logs:/var/log/nginx
-      - ./nginx/sites:/etc/nginx/sites-available
-    networks:
-      pp-api:
-        aliases:
-          - local-api.publisherplus.ie
-    ports:
-      - "80:80"
-      - "443:443"
+      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ./nginx/1.17/sites:/etc/nginx/sites-available
+      - ./nginx/1.17/conf:/etc/nginx/conf.d
 
   php56:
     build:
-      context: ./php56
+      context: .
+      dockerfile: php/Dockerfile
+      args:
+        - BUILD_VERSION=5.6
     volumes:
-      - ../:/var/www:cached
-      - ./php56/home:/root:cached
-      - ./php56/supervisord:/etc/supervisord.d
-    networks:
-      - pp-api
-      - default
+      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ./php/5.6/home:/root:${VOLUME_CACHE_OPTION}
+      - ./php/5.6/supervisord:/etc/supervisord.d/usr
+      - ./php/5.6/crontabs:/var/spool/cron/crontabs
 
   php70:
     build:
-      context: ./php70
+      context: .
+      dockerfile: php/Dockerfile
+      args:
+        - BUILD_VERSION=7.0
     volumes:
-      - ../:/var/www:cached
-      - ./php70/home:/root:cached
-      - ./php70/supervisord:/etc/supervisord.d
-    networks:
-      - pp-api
-      - default
+      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ./php/7.0/home:/root:${VOLUME_CACHE_OPTION}
+      - ./php/7.0/supervisord:/etc/supervisord.d/usr
+      - ./php/7.0/crontabs:/var/spool/cron/crontabs
+
+  php71:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+      args:
+        - BUILD_VERSION=7.1
+    volumes:
+      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ./php/7.1/home:/root:${VOLUME_CACHE_OPTION}
+      - ./php/7.1/supervisord:/etc/supervisord.d/usr
+      - ./php/7.1/crontabs:/var/spool/cron/crontabs
 
   php72:
     build:
-      context: ./php72
+      context: .
+      dockerfile: php/Dockerfile
+      args:
+        - BUILD_VERSION=7.2
     volumes:
-      - ../:/var/www:cached
-      - ./php72/home:/root:cached
-      - ./php72/supervisord:/etc/supervisord.d
-    networks:
-      - pp-api
-      - default
+      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ./php/7.2/home:/root:${VOLUME_CACHE_OPTION}
+      - ./php/7.2/supervisord:/etc/supervisord.d/usr
+      - ./php/7.2/crontabs:/var/spool/cron/crontabs
 
   php73:
     build:
-      context: ./php73
+      context: .
+      dockerfile: php/Dockerfile
+      args:
+        - BUILD_VERSION=7.3
     volumes:
-      - ../:/var/www:cached
-      - ./php73/home:/root:cached
-      - ./php73/supervisord:/etc/supervisord.d
-    networks:
-      - pp-api
-      - default
-    ports:
-      - "7322:22"
+      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ./php/7.3/home:/root:${VOLUME_CACHE_OPTION}
+      - ./php/7.3/supervisord:/etc/supervisord.d/usr
+      - ./php/7.3/crontabs:/var/spool/cron/crontabs
+
+  php74:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+      args:
+        - BUILD_VERSION=7.4
+    volumes:
+      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ./php/7.4/home:/root:${VOLUME_CACHE_OPTION}
+      - ./php/7.4/supervisord:/etc/supervisord.d/usr
+      - ./php/7.4/crontabs:/var/spool/cron/crontabs
 
   mailhog:
     image: mailhog/mailhog
-    ports:
-      - "8025:8025"
+
+  mysql57:
+    build:
+      context: .
+      dockerfile: mysql/Dockerfile
+      args:
+        - BUILD_VERSION=5.7
+    volumes:
+      - ./mysql/5.7/data:/var/lib/mysql
+      - ./mysql/5.7/home:/root:${VOLUME_CACHE_OPTION}
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
 
   mysql80:
     build:
-      context: ./mysql80
-    ports:
-      - "3307:3306"
+      context: .
+      dockerfile: mysql/Dockerfile
+      args:
+        - BUILD_VERSION=8.0
     volumes:
-      - ./mysql80/data:/var/lib/mysql
+      - ./mysql/8.0/data:/var/lib/mysql
+      - ./mysql/8.0/home:/root:${VOLUME_CACHE_OPTION}
     environment:
       - MYSQL_ROOT_PASSWORD=root
 
-  mysql57:
-    image: mysql:5.7
-    ports:
-      - "3308:3306"
-    volumes:
-      - ./mysql57/data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-
-  redis:
-    image: redis:5.0-alpine
+  redis50:
+    build:
+      context: .
+      dockerfile: redis/5.0/Dockerfile
