@@ -14,11 +14,14 @@ RUN apk add --no-cache openssl
 COPY build /tmp/build
 COPY php/${BUILD_VERSION}/build /tmp/user_build
 RUN chmod -R a+x /tmp/build/scripts
-RUN /bin/sh /tmp/build/scripts/alpine/supervisor.sh
-RUN /bin/sh /tmp/build/scripts/run_custom_install.sh
 
+# Setup supervisor
+RUN BUILD_FOLDER=/tmp/build /bin/sh /tmp/build/scripts/alpine/supervisor.sh
 COPY build/config/supervisor/php-fpm.conf /etc/supervisord.d/sys/php-fpm.conf
 COPY build/config/supervisor/crond.conf /etc/supervisord.d/sys/crond.conf
+
+# Run user's .install script
+RUN /bin/sh /tmp/build/scripts/run_custom_install.sh
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 	&& php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
