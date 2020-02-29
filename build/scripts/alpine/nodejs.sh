@@ -2,4 +2,6 @@
 
 echo "Installing nodejs..."
 
-apk add --update nodejs nodejs-npm npm
+apk add --update nodejs
+apk add --update nodejs-npm
+apk add --update npm
