@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd /tmp/build
+cd $BUILD_FOLDER
 
 scripts/alpine/openssh.sh
 

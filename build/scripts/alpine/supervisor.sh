@@ -2,4 +2,4 @@
 
 apk add supervisor
 
-cp /tmp/build/config/supervisor/supervisord.conf /etc/supervisord.conf
+cp $BUILD_FOLDER/config/supervisor/supervisord.conf /etc/supervisord.conf
