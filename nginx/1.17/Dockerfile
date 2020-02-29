@@ -1,5 +1,6 @@
 FROM nginx:1.17-alpine
 
+RUN cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.original
 COPY nginx/1.17/nginx.conf /etc/nginx/nginx.conf
 
 RUN apk update && apk upgrade
