@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: nginx/1.17/Dockerfile
     volumes:
-      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
       - ./nginx/1.17/sites:/etc/nginx/sites-available
       - ./nginx/1.17/conf:/etc/nginx/conf.d
 
@@ -17,8 +17,8 @@ services:
       args:
         - BUILD_VERSION=5.6
     volumes:
-      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
-      - ./php/5.6/home:/root:${VOLUME_CACHE_OPTION}
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./php/5.6/home:/root${VOLUME_CACHE_OPTION}
       - ./php/5.6/supervisord:/etc/supervisord.d/usr
       - ./php/5.6/crontabs:/var/spool/cron/crontabs
 
@@ -29,8 +29,8 @@ services:
       args:
         - BUILD_VERSION=7.0
     volumes:
-      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
-      - ./php/7.0/home:/root:${VOLUME_CACHE_OPTION}
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./php/7.0/home:/root${VOLUME_CACHE_OPTION}
       - ./php/7.0/supervisord:/etc/supervisord.d/usr
       - ./php/7.0/crontabs:/var/spool/cron/crontabs
 
@@ -41,8 +41,8 @@ services:
       args:
         - BUILD_VERSION=7.1
     volumes:
-      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
-      - ./php/7.1/home:/root:${VOLUME_CACHE_OPTION}
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./php/7.1/home:/root${VOLUME_CACHE_OPTION}
       - ./php/7.1/supervisord:/etc/supervisord.d/usr
       - ./php/7.1/crontabs:/var/spool/cron/crontabs
 
@@ -53,8 +53,8 @@ services:
       args:
         - BUILD_VERSION=7.2
     volumes:
-      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
-      - ./php/7.2/home:/root:${VOLUME_CACHE_OPTION}
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./php/7.2/home:/root${VOLUME_CACHE_OPTION}
       - ./php/7.2/supervisord:/etc/supervisord.d/usr
       - ./php/7.2/crontabs:/var/spool/cron/crontabs
 
@@ -65,8 +65,8 @@ services:
       args:
         - BUILD_VERSION=7.3
     volumes:
-      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
-      - ./php/7.3/home:/root:${VOLUME_CACHE_OPTION}
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./php/7.3/home:/root${VOLUME_CACHE_OPTION}
       - ./php/7.3/supervisord:/etc/supervisord.d/usr
       - ./php/7.3/crontabs:/var/spool/cron/crontabs
 
@@ -77,8 +77,8 @@ services:
       args:
         - BUILD_VERSION=7.4
     volumes:
-      - ${CODE_FOLDER}:/var/www:${VOLUME_CACHE_OPTION}
-      - ./php/7.4/home:/root:${VOLUME_CACHE_OPTION}
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./php/7.4/home:/root${VOLUME_CACHE_OPTION}
       - ./php/7.4/supervisord:/etc/supervisord.d/usr
       - ./php/7.4/crontabs:/var/spool/cron/crontabs
 
@@ -93,7 +93,7 @@ services:
         - BUILD_VERSION=5.7
     volumes:
       - ./mysql/5.7/data:/var/lib/mysql
-      - ./mysql/5.7/home:/root:${VOLUME_CACHE_OPTION}
+      - ./mysql/5.7/home:/root${VOLUME_CACHE_OPTION}
     environment:
       - MYSQL_ROOT_PASSWORD=root
 
@@ -105,9 +105,7 @@ services:
         - BUILD_VERSION=8.0
     volumes:
       - ./mysql/8.0/data:/var/lib/mysql
-      - ./mysql/8.0/home:/root:${VOLUME_CACHE_OPTION}
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - ./mysql/8.0/home:/root${VOLUME_CACHE_OPTION}
 
   redis50:
     build:
