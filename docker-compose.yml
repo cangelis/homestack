@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  alpine311:
+    build:
+      context: .
+      dockerfile: alpine/Dockerfile
+      args:
+        - BUILD_VERSION=3.11
+    volumes:
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./alpine/3.11/home:/root${VOLUME_CACHE_OPTION}
+      - ./alpine/3.11/supervisord:/etc/supervisord.d/usr
+      - ./alpine/3.11/crontabs:/var/spool/cron/crontabs
+
   nginx117:
     build:
       context: .
