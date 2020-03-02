@@ -1,5 +1,7 @@
 #!/bin/sh
 
+apk add autoconf gcc g++ make
+
 pecl install xdebug
 
 echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
