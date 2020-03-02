@@ -4,6 +4,8 @@ FROM mysql:${BUILD_VERSION}
 
 ARG BUILD_VERSION
 
+COPY mysql/${BUILD_VERSION}/my.cnf /etc/mysql/my.cnf
+
 COPY build /tmp/build
 COPY mysql/${BUILD_VERSION}/build /tmp/user_build
 RUN chmod -R a+x /tmp/build/scripts
