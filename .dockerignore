@@ -8,3 +8,7 @@ php/7.1/home
 php/7.2/home
 php/7.3/home
 php/7.4/home
+elasticsearch/6.8/home
+elasticsearch/6.8/data
+elasticsearch/7.6/home
+elasticsearch/7.6/data
