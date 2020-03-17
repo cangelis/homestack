@@ -119,6 +119,42 @@ services:
       - ./mysql/8.0/data:/var/lib/mysql
       - ./mysql/8.0/home:/root${VOLUME_CACHE_OPTION}
 
+  elasticsearch76:
+    build:
+      context: .
+      dockerfile: elasticsearch/Dockerfile
+      args:
+        - IMAGE_VERSION=7.6.1
+        - BUILD_VERSION=7.6
+    volumes:
+      - ./elasticsearch/7.6/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/7.6/home:/root${VOLUME_CACHE_OPTION}
+
+  kibana76:
+    image: kibana:7.6.1
+    depends_on:
+      - elasticsearch76
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch76:9200
+
+  elasticsearch68:
+    build:
+      context: .
+      dockerfile: elasticsearch/Dockerfile
+      args:
+        - IMAGE_VERSION=6.8.7
+        - BUILD_VERSION=6.8
+    volumes:
+      - ./elasticsearch/6.8/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/6.8/home:/root${VOLUME_CACHE_OPTION}
+
+  kibana68:
+    image: kibana:6.8.7
+    depends_on:
+      - elasticsearch68
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch68:9200
+
   redis50:
     build:
       context: .
