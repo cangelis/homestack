@@ -1,0 +1,4 @@
+backend default {
+    .host = "nginx117";
+    .port = "80";
+}

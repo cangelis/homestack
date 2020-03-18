@@ -65,3 +65,19 @@ services:
   kibana68:
     ports:
       - "5668:5601"
+
+  varnish30:
+    ports:
+      - "8030:80"
+
+  varnish41:
+    ports:
+      - "8041:80"
+
+  varnish52:
+    ports:
+      - "8052:80"
+
+  varnish60:
+    ports:
+      - "8060:80"

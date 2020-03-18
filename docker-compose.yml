@@ -159,3 +159,51 @@ services:
     build:
       context: .
       dockerfile: redis/5.0/Dockerfile
+
+  varnish30:
+    build:
+      context: .
+      dockerfile: varnish/Dockerfile
+      args:
+        - BUILD_VERSION=3.0
+    environment:
+      - VARNISH_PORT=80
+      - VARNISHLOG=true
+    volumes:
+      - ./varnish/3.0/default.vcl:/etc/varnish/default.vcl
+
+  varnish41:
+    build:
+      context: .
+      dockerfile: varnish/Dockerfile
+      args:
+        - BUILD_VERSION=4.1
+    environment:
+      - VARNISH_PORT=80
+      - VARNISHLOG=true
+    volumes:
+      - ./varnish/4.1/default.vcl:/etc/varnish/default.vcl
+
+  varnish52:
+    build:
+      context: .
+      dockerfile: varnish/Dockerfile
+      args:
+        - BUILD_VERSION=5.2
+    environment:
+      - VARNISH_PORT=80
+      - VARNISHLOG=true
+    volumes:
+      - ./varnish/5.2/default.vcl:/etc/varnish/default.vcl
+
+  varnish60:
+    build:
+      context: .
+      dockerfile: varnish/Dockerfile
+      args:
+        - BUILD_VERSION=6.0
+    environment:
+      - VARNISH_PORT=80
+      - VARNISHLOG=true
+    volumes:
+      - ./varnish/6.0/default.vcl:/etc/varnish/default.vcl
