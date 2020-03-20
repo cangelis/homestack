@@ -21,6 +21,7 @@ services:
       - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
       - ./nginx/1.17/sites:/etc/nginx/sites-available
       - ./nginx/1.17/conf:/etc/nginx/conf.d
+      - ./nginx/1.17/home:/root${VOLUME_CACHE_OPTION}
 
   php56:
     build:
