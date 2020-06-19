@@ -1,6 +1,9 @@
 #!/bin/sh
 
-apk add autoconf gcc g++ make unixodbc-dev
+cd $BUILD_FOLDER/scripts
+
+alpine/dev.sh
+apk add unixodbc-dev
 
 pecl install sqlsrv
 pecl install pdo_sqlsrv

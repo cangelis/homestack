@@ -7,7 +7,8 @@ IS_NEWER_THAN_71=$(php -r "echo version_compare(PHP_VERSION, '7.2.0') >= 0 ? 'tr
 if [ $IS_NEWER_THAN_71 = "false" ]; then
   docker-php-ext-install mcrypt
 else
-  apk add autoconf gcc g++ make
+  cd $BUILD_FOLDER/scripts
+  alpine/dev.sh
 
   pecl install mcrypt-1.0.3
   docker-php-ext-enable mcrypt

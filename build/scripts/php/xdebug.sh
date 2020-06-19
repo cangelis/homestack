@@ -1,6 +1,8 @@
 #!/bin/sh
 
-apk add autoconf gcc g++ make
+cd $BUILD_FOLDER/scripts
+
+alpine/dev.sh
 
 pecl install xdebug
 
