@@ -6,7 +6,8 @@ cd /tmp/user_build
 
 if [ -f .install ]
 then
-    BUILD_FOLDER=/tmp/build /bin/sh .install
+    export BUILD_FOLDER=/tmp/build
+    /bin/sh .install
 else
     echo No .install script found. Skipping...
 fi
