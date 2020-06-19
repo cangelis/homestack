@@ -13,3 +13,5 @@ elasticsearch/6.8/data
 elasticsearch/7.6/home
 elasticsearch/7.6/data
 nginx/1.17/home
+python/3.5/home
+go/1.14/home

@@ -208,3 +208,27 @@ services:
       - VARNISHLOG=true
     volumes:
       - ./varnish/6.0/default.vcl:/etc/varnish/default.vcl
+
+  python35:
+    build:
+      context: .
+      dockerfile: python/Dockerfile
+      args:
+        - BUILD_VERSION=3.5
+    volumes:
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./python/3.5/home:/root${VOLUME_CACHE_OPTION}
+      - ./python/3.5/supervisord:/etc/supervisord.d/usr
+      - ./python/3.5/crontabs:/var/spool/cron/crontabs
+
+  go114:
+    build:
+      context: .
+      dockerfile: go/Dockerfile
+      args:
+        - BUILD_VERSION=1.14
+    volumes:
+      - ${CODE_FOLDER}:/var/www${VOLUME_CACHE_OPTION}
+      - ./go/1.14/home:/root${VOLUME_CACHE_OPTION}
+      - ./go/1.14/supervisord:/etc/supervisord.d/usr
+      - ./go/1.14/crontabs:/var/spool/cron/crontabs
