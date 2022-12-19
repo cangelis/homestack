@@ -1,0 +1,3 @@
+upstream php80 {
+  server php80:9000;
+}
