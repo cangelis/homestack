@@ -5,4 +5,6 @@
 !php-7.2-upstream.conf.example
 !php-7.3-upstream.conf.example
 !php-7.4-upstream.conf.example
+!php-8.0-upstream.conf.example
+!php-8.1-upstream.conf.example
 !.gitignore
