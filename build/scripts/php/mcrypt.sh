@@ -10,6 +10,6 @@ else
   cd $BUILD_FOLDER/scripts
   alpine/dev.sh
 
-  pecl install mcrypt-1.0.3
+  printf "\n" | pecl install mcrypt-1.0.4
   docker-php-ext-enable mcrypt
 fi
