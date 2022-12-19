@@ -30,6 +30,14 @@ services:
     ports:
       - "7422:22"
 
+  php80:
+    ports:
+      - "8022:22"
+
+  php81:
+    ports:
+      - "8122:22"
+
   mailhog:
     ports:
       - "8025:8025"
